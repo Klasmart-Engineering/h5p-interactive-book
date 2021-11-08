@@ -1,6 +1,6 @@
 {
   "name": "h5p-interactive-book",
-  "version": "1.0.0",
+  "version": "1.4.0",
   "description": "An interactive book which displays content in pages and sections",
   "scripts": {
     "build": "cross-env NODE_ENV='production' webpack -p",
@@ -22,12 +22,11 @@
     "@babel/plugin-transform-typeof-symbol": "^7.8.4",
     "@babel/preset-env": "^7.2.0",
     "babel-loader": "^8.0.4",
-    "babel-polyfill": "^6.26.0",
     "cross-env": "^4.0.0",
     "css-loader": "^2.1.1",
     "eslint": "^6.8.0",
     "file-loader": "^2.0.0",
-    "node-sass": "^4.14.1",
+    "sass": "^1.35.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.13.2",
     "webpack": "^4.43.0",
