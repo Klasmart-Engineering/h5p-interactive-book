@@ -196,6 +196,10 @@
     margin-top: 1rem;
     flex-wrap: wrap;
 
+    > button {
+      font-family: inherit;
+    }
+
     .h5p-interactive-book-summary-button {
       border-radius: 4px;
       padding: 0.6125rem 0.8125rem;
@@ -480,6 +484,7 @@
   min-width: 12rem;
 
   & > button {
+    font-family: inherit;
     cursor: pointer;
   }
 

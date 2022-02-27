@@ -128,7 +128,7 @@
   border-bottom: solid 1px $ghost-white;
   color: $mud;
   display: flex;
-  font-family: Arial;
+  font-family: inherit;
   height: 3.438em;
   margin: 0;
   padding: 0 1.125em;
@@ -150,7 +150,7 @@
   .h5p-interactive-book-navigation-chapter-title-text {
     background-color: transparent;
     color: $base-color;
-    font-family: Arial;
+    font-family: 'Roboto', sans-serif;
     font-size: 1em;
     font-weight: 700;
     line-height: 1.5em;
@@ -196,7 +196,7 @@
   .navigation-title {
     align-self: center;
     color: $background-color;
-    font-family: Arial;
+    font-family: 'Roboto', sans-serif;
     font-size: 1em;
     font-weight: 400;
     overflow: hidden;
