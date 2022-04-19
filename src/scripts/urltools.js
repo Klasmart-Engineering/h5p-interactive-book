@@ -12,7 +12,10 @@ class URLTools {
 
     // Convert fragment string to object with properties
     const fragments = {};
-    hashWindow.location.hash.replace('#', '').split('&')
+    hashWindow.location.hash
+      .replace('#/', '') // KidsLoop Live Workaround
+      .replace('#', '')
+      .split('&')
       .forEach(fragment => {
         if (fragment.indexOf('=') === -1) {
           return; // Skip if incomplete pair
