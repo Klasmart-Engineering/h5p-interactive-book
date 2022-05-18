@@ -426,7 +426,7 @@ export default class InteractiveBook extends H5P.EventDispatcher {
      * @param {boolean} autoProgress
      * @returns {boolean}
      */
-    this.isChapterRead = (chapter, autoProgress = this.params.behaviour.progressAuto) => 
+    this.isChapterRead = (chapter, autoProgress = this.params.behaviour.progressAuto) =>
       chapter.isInitialized && (chapter.completed || (autoProgress && chapter.tasksLeft === 0));
 
     /**
@@ -622,7 +622,7 @@ export default class InteractiveBook extends H5P.EventDispatcher {
 
     H5P.on(this, 'changeHash', (event) => {
       if (String(event.data.h5pbookid) === String(this.contentId)) {
-        this.hashWindow.location.hash = event.data.newHash;
+        this.hashWindow.location.replace(event.data.newHash);
       }
     });
 
@@ -689,7 +689,7 @@ export default class InteractiveBook extends H5P.EventDispatcher {
         if (sectionInstance.subContentId === sectionUUID && !section.taskDone) {
           // Check if instance has given an answer
           section.taskDone = sectionInstance.getAnswerGiven ? sectionInstance.getAnswerGiven() : true;
-                    
+
           this.sideBar.setSectionMarker(chapterId, index);
           if (section.taskDone) {
             this.chapters[chapterId].tasksLeft -= 1;
@@ -699,28 +699,24 @@ export default class InteractiveBook extends H5P.EventDispatcher {
       });
     };
 
-    /**
-     * Add listener for hash changes to specified window
-     */
-    this.addHashListener = (hashWindow) => {
-      hashWindow.addEventListener('hashchange', (event) => {
-        H5P.trigger(this, 'respondChangeHash', event);
-      });
-      this.hashWindow = hashWindow;
-    };
-
     try {
-      this.addHashListener(top);
+      if (window.top.document) {
+        this.hashWindow = window.top;
+      }
     }
     catch (e) {
       if (e instanceof DOMException) {
         // Use iframe window to store book location hash
-        this.addHashListener(window);
+        this.hashWindow = window;
       }
       else {
         throw e;
       }
     }
+
+    this.hashWindow.addEventListener('hashchange', (event) => {
+      H5P.trigger(this, 'respondChangeHash', event);
+    });
 
     /**
      * Display book cover
