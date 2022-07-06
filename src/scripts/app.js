@@ -709,18 +709,11 @@ export default class InteractiveBook extends H5P.EventDispatcher {
       this.hashWindow = hashWindow;
     };
 
-    try {
-      this.addHashListener(top);
-    }
-    catch (e) {
-      if (e instanceof DOMException) {
-        // Use iframe window to store book location hash
-        this.addHashListener(window);
-      }
-      else {
-        throw e;
-      }
-    }
+    /*
+     * KLL customization: Use iframe window to store book location hash instead
+     * of top window
+     */
+    this.addHashListener(window);
 
     /**
      * Display book cover
